@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
+
+  <title>RC car</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="lib/bootstrap.min.css" rel="stylesheet">
+
+  <style type="text/css">
+  #stream {
+    height: 99%;
+    margin: 0px auto;
+    display: block;
+    margin-top: -20px;
+    /*width: 200px*/
+  }
+  img{
+        -moz-transform: scaleY(-1);
+        -o-transform: scaleY(-1);
+        -webkit-transform: scaleY(-1);
+        transform: scaleY(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+  }
+  .row{
+    height: 190px;
+  }
+  #start{
+    width: 25%;
+    margin: 40px auto;
+    /*landscape*/
+    padding-left: 20px;
+  }
+  #forward{
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-top: -65px;
+  }
+  #backwards{
+    float: left;
+
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    /*margin-left: -25px;*/
+  }
+  #left{
+    float: right;
+
+    width: 60px;
+    height: 60px;
+margin-top: -46px;
+  }
+  #right{
+    float: right;
+
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+margin-top: -46px;
+  }
+
+
+  .buttonForward {
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 5px;
+        width: 80%;
+        color: #ffffff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #5bb75b;
+        border-color: #51a351 #51a351 #387038;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+      }
+        .buttonBackwards {
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 5px;
+        width: 80%;
+        color: #ffffff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #5bb75b;
+        border-color: #51a351 #51a351 #387038;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+      }
+        .buttonLeft {
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 5px;
+        width: 80%;
+        color: #ffffff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #5bb75b;
+        border-color: #51a351 #51a351 #387038;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+      }
+        .buttonRight {
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 5px;
+        width: 80%;
+        color: #ffffff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #5bb75b;
+        border-color: #51a351 #51a351 #387038;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+      }
+
+
+  .buttonForward.touch {
+    background-color: red;
+  }
+    .buttonBackwards.touch {
+    background-color: red;
+  }  
+  .buttonLeft.touch {
+    background-color: red;
+  }
+    .buttonRight.touch {
+    background-color: red;
+  }
+    .buttonLed.touch {
+    background-color: red;
+  }
+
+
+  .buttonOff  {
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 14px;
+          padding: 5px;
+          width: 80%;
+          color: #ffffff;
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+          background-color: #da4f49;
+          background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+          background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+          background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+          background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+          background-repeat: repeat-x;
+          border-color: #bd362f #bd362f #802420;
+          border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+          filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        }
+
+
+        @media all and (orientation:portrait){
+
+          .container{
+            /*background-color: red;*/
+          }
+          #backwards{
+            margin-top: 38px;
+            margin-left: -30px;
+          }
+          #forward{
+            margin-top: 0px;
+          }
+          #left{
+            margin-top: 0px;
+          }
+          #right{
+            margin-top: 0px;
+          }
+          #start {
+            width: 40%;
+          }
+        }
+
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+          .row{
+            height: 400px;
+          }
+        }
+
+
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+          .row{
+            height: 500px;
+          }
+        }
+        @media only screen and (min-width : 1224px) {
+          .row{
+            height: 500px;
+          }
+          }
+  </style>
+
+  <!-- jQuery -->
+  <script src="/lib/jquery-1.10.2.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="/lib/bootstrap.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  
+</head>
+
+<body class="container">
+  <div id="wrapper">
+<!--     <h1 class="text-center">RC car
+      <small>Powered by Thijs</small>
+    </h1> -->
+
+    <div id="start">
+
+    <button type="button" id="" class="btn btn-info start" onclick="startStream()">Start Camera</button>
+    </div>
+    <div class="row">
+      <img src="" id="stream">
+    </div>
+
+    <div id="left">
+    <button type="button" id="left" class="buttonLeft"></button>
+    </div>
+    <div id="right">
+    <button id="right" class="buttonRight"></button>
+    </div>
+    <div id="forward">
+    <button id="forward" class="buttonForward"></button>
+    </div>
+    <div id="backwards">
+    <button id="backwards" class="buttonBackwards"></button>
+    </div>
+</div>
+
+<script>
+  var socket = io();
+
+  var rightTouchOn = false;
+  var leftTouchOn = false;
+  var forwardTouchOn = false;
+  var backwardsTouchOn = false;
+
+  socket.on('liveStream', function(url) {
+    $('#stream').attr('src', url);
+    $('.start').hide();
+  });
+
+  function startStream() {
+    socket.emit('start-stream');
+    $('.start').hide();
+  }
+
+  // VOORUIT
+      $('#forward').on({ 'touchstart' : function(){
+        if (backwardsTouchOn == true) {
+          console.log("recht + links")
+        }else{
+          console.log("touchON")
+          socket.emit('forwardOn');
+          forwardTouchOn = true;
+          $('.buttonForward').addClass('touch');
+        }
+  
+      } 
+      });
+
+      $('#forward').on({ 'touchend' : function(){
+      console.log("touchStop")
+      socket.emit('forwardOff');  
+      forwardTouchOn = false; 
+      $('.buttonForward').removeClass('touch');
+      } 
+      });
+
+// ACHTERUIT
+
+      $('#backwards').on({ 'touchstart' : function(){
+        if (forwardTouchOn == true) {
+          console.log("recht + links")
+        }else{
+          console.log("touchON")
+          socket.emit('backwardsOn');
+          backwardsTouchOn = true;
+          $('.buttonBackwards').addClass('touch');
+        }
+  
+      } 
+      });
+
+      $('#backwards').on({ 'touchend' : function(){
+      console.log("touchStop")
+      socket.emit('backwardsOff');  
+      backwardsTouchOn = false; 
+      $('.buttonBackwards').removeClass('touch');
+      } 
+      });
+
+// LINKS
+      $('#left').on({ 'touchstart' : function(){
+        if (rightTouchOn == true) {
+          console.log("recht + links")
+        }else{
+          console.log("touchON")
+          socket.emit('leftOn');
+          leftTouchOn = true;
+          $('.buttonLeft').addClass('touch');
+        }
+  
+      } 
+      });
+
+      $('#left').on({ 'touchend' : function(){
+      console.log("touchStop")
+      socket.emit('leftOff'); 
+      leftTouchOn = false;  
+      $('.buttonLeft').removeClass('touch');
+      } 
+      });
+// RECHTS
+      $('#right').on({ 'touchstart' : function(){
+        if (leftTouchOn == true) {
+          console.log("links + rechts")
+        } else{
+          console.log("touchON")
+          socket.emit('rightOn'); 
+          rightTouchOn = true;
+          $('.buttonRight').addClass('touch');
+        }
+
+      } 
+      });
+
+      $('#right').on({ 'touchend' : function(){
+      console.log("touchStop")
+      socket.emit('rightOff');
+      rightTouchOn = false;   
+      $('.buttonRight').removeClass('touch');
+      } 
+      });
+
+
+  </script>
+
+</body>
+
+</html>

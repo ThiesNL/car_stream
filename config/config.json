@@ -1,0 +1,14 @@
+{
+    "local": {
+        "forward": 11,
+        "backwards": 12,
+        "left": 10,
+        "right": 9,
+        "led": 8,
+        "led_13": 13
+    },
+    "remote": {
+        "port":4555,
+        "fqdn": "http://server7.tezzt.nl"
+    }
+}
